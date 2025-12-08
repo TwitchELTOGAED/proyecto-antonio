@@ -14,21 +14,20 @@ export default function SignupPage() {
   const handleRegistro = (e) => {
     e.preventDefault();
 
-    // 1. Validar que no haya campos vacíos
     if (!nombre || !usuario || !email || !password) {
       alert("Por favor, rellena todos los campos.");
       return;
     }
 
-    // 2. Validar que las contraseñas coincidan
+    
     if (password !== confirmar) {
       alert("Las contraseñas no coinciden.");
       return;
     }
 
-    // Si todo va bien:
+    
     alert("¡Usuario " + usuario + " registrado con éxito!");
-    // Aquí en el futuro se enviaría al servidor
+    
   };
 
   return (
