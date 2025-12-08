@@ -43,7 +43,6 @@ export default function PerfilPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
                 
                 <div style={{ fontSize: '50px' }}>👤</div>
-                
                 <div style={{ width: '100%' }}>
                     <p><strong>Nombre de usuario:</strong> {usuario.nick}</p>
                     <p><strong>Contraseña:</strong> *******</p>

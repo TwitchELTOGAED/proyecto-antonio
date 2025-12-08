@@ -57,7 +57,7 @@ La navegación entre las distintas páginas se realiza de forma manual o a trav�
 
 * **`src/components`**: Contiene los componentes reutilizables (`Header`, `Card`).
 * **`src/app`**: Contiene las páginas del proyecto organizadas por carpetas (`login`, `dashboard`, `noticias`, etc.).
-* **`src/datos.js`**: Archivo con los arrays de datos simulados (Mock Data).
+* **`src/datos.js`**: Archivo con los arrays de datos simulados.
 
 ##  Autor
 
