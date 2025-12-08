@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DELTA TIME - Proyecto F1 (Entrega 2)
 
-## Getting Started
+Este repositorio contiene el prototipo funcional desarrollado en React (Next.js) para la asignatura de Desarrollo de Interfaces.
+Delta Time es una aplicación web diseñada para una comunidad de Fórmula 1, incluyendo secciones de noticias, foros y contenido multimedia.
 
-First, run the development server:
+## Descripción del Proyecto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+El objetivo de esta entrega es implementar la estructura de componentes en React basándose en el diseño previo de Figma, priorizando la funcionalidad, la comunicación entre componentes (props) y el manejo de estados (useState).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación consta de las siguientes vistas independientes:
+* **Login y Registro:** Formularios funcionales con validación básica.
+* **Dashboard:** Vista principal con resumen de contenidos.
+* **Noticias:** Listado de noticias y vista de detalle de una noticia.
+* **Foro:** Listado de hilos de discusión y vista de detalle de un post.
+* **Wallpapers:** Galería de imágenes con funcionalidad simulada de compartir.
+* **Perfil:** Visualización de datos de usuario simulados.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Requisitos Previos
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para ejecutar este proyecto necesitas tener instalado en tu ordenador:
 
-## Learn More
+* **Node.js** (Versión 18 o superior recomendada).
+* **NPM** (Viene instalado junto con Node.js).
+* Un editor de código como **Visual Studio Code**.
 
-To learn more about Next.js, take a look at the following resources:
+## Instalación y Despliegue
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Sigue estos pasos para visualizar el proyecto en tu equipo local:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1.  **Clonar el repositorio** (o descargar el ZIP y descomprimirlo):
+    ```bash
+    git clone <LinkGitHub>
+    ```
 
-## Deploy on Vercel
+2.  **Instalar dependencias:**
+    Abre una terminal en la carpeta raíz del proyecto y ejecuta:
+    ```bash
+    npm install
+    ```
+    *(Esto descargará la carpeta `node_modules` necesaria para que React funcione).*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3.  **Ejecutar el servidor de desarrollo:**
+    Una vez instaladas las dependencias, lanza el proyecto con:
+    ```bash
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Ver en el navegador:**
+    Abre tu navegador web y entra en la siguiente dirección:
+    ```
+    http://localhost:3000
+    ```
+
+## Estructura del Proyecto
+
+La navegación entre las distintas páginas se realiza de forma manual o a través del índice principal, ya que se han desarrollado como páginas independientes según los requisitos.
+
+* **`src/components`**: Contiene los componentes reutilizables (`Header`, `Card`).
+* **`src/app`**: Contiene las páginas del proyecto organizadas por carpetas (`login`, `dashboard`, `noticias`, etc.).
+* **`src/datos.js`**: Archivo con los arrays de datos simulados (Mock Data).
+
+##  Autor
+
+* **Alumno:** [Antonio Jurado Ferreira]
+* **Asignatura:** Desarrollo de Interfaces
+* **Curso:** 2025/2026
