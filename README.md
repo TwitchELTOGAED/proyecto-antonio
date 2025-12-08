@@ -29,7 +29,7 @@ Sigue estos pasos para visualizar el proyecto en tu equipo local:
 
 1.  **Clonar el repositorio** (o descargar el ZIP y descomprimirlo):
     ```bash
-    git clone <LinkGitHub>
+    git clone https://github.com/TwitchELTOGAED/proyecto-antonio.git
     ```
 
 2.  **Instalar dependencias:**
