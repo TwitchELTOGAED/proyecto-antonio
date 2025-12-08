@@ -61,6 +61,6 @@ La navegación entre las distintas páginas se realiza de forma manual o a trav�
 
 ##  Autor
 
-* **Alumno:** [Antonio Jurado Ferreira]
+* **Alumno:** Antonio Jurado Ferreira
 * **Asignatura:** Desarrollo de Interfaces
 * **Curso:** 2025/2026
