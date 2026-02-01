@@ -1,30 +1,46 @@
-'use client'; 
-import Header from '../components/Header';
-import Card from '../components/Card';
-import { datosNoticias } from '../datos'; 
+import SectionTitle from '../components/SectionTitle';
+import NewsCard from '../components/NewsCard';
 
 export default function NoticiasPage() {
   return (
-    <div style={{ padding: '20px' }}>
-      <Header />
+    <main className="min-h-screen bg-black text-[#F5F5F5] pb-20 pt-8">
       
-      <h2>SECCIÓN DE NOTICIAS</h2>
-      
-      <div>
-        {datosNoticias.map((item) => (
-          <div key={item.id} style={{ marginBottom: '30px', borderBottom: '1px solid #ccc', paddingBottom: '20px' }}>
-            
-           
-            <Card 
-              titulo={item.titulo}
-              descripcion={item.descripcion}
-              imagen={item.imagen}
-            />
-           
+      {/* Contenedor centrado */}
+      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+        
+        {/* Título de la Sección */}
+        <SectionTitle title="Todas las Noticias" />
+        
+        {/* Lista de Noticias Actualizada */}
+        <div className="flex flex-col gap-6">
+          
+          {/* Noticia 1 */}
+          <NewsCard 
+            title='En Aston Martin ven el AMR26 "a otro nivel" '
+            excerpt="Neil Zambardi-Christie, líder de fabricación, recuerda que es su primer coche con Adrian Newey."
+            category="Pretemporada"
+            image="/fernando-alonso-aston-martin.webp"
+          />
+          
+          {/* Noticia 2 */}
+          <NewsCard 
+            title='Fernando Alonso, al bajarse del AMR26 por primera vez: "Es emocionante" '
+            excerpt='Fernando Alonso ya sabe lo que es conducir el Aston Martin AMR26. El asturiano se ha subido por primera al monoplaza diseñado por Adrian Newey.'
+            category="ASTON MARTIN"
+            image="/fernando-alonso-newey.webp"
+          />
 
-          </div>
-        ))}
+          {/* Noticia 3 */}
+          <NewsCard 
+            title="Así fue el shakedown de la F1 en Barcelona para la parrilla de 2026"
+            excerpt="La complejidad de la revisión reglamentaria de la F1 para 2026 es tal que los equipos solicitaron un shakedown adicional, para preparar el inicio de la temporada."
+            category="Pretemporada"
+            image="/andrea-kimi-antonelli-mercedes.webp"
+          />
+
+        </div>
+
       </div>
-    </div>
+    </main>
   );
 }

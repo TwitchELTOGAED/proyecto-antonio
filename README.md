@@ -1,35 +1,42 @@
-# DELTA TIME - Proyecto F1 (Entrega 2)
+# DELTA TIME - Proyecto F1 (Entrega 3: Desarrollo Fase 2)
 
-Este repositorio contiene el prototipo funcional desarrollado en React (Next.js) para la asignatura de Desarrollo de Interfaces.
-Delta Time es una aplicación web diseñada para una comunidad de Fórmula 1, incluyendo secciones de noticias, foros y contenido multimedia.
+Este repositorio contiene la evolución del proyecto "Delta Time" para la asignatura de Desarrollo de Interfaces. En esta **Fase 2**, el foco principal ha sido la implementación fiel del diseño visual (Pixel Perfect) utilizando **Next.js** y **Tailwind CSS**, transformando el prototipo funcional anterior en una aplicación con una interfaz profesional y responsiva.
 
 ## Descripción del Proyecto
 
-El objetivo de esta entrega es implementar la estructura de componentes en React basándose en el diseño previo de Figma, priorizando la funcionalidad, la comunicación entre componentes (props) y el manejo de estados (useState).
+Delta Time es una plataforma digital y foro diseñado exclusivamente para la comunidad de Fórmula 1. El objetivo de esta entrega ha sido aplicar una capa de estilos visuales robusta que respete la identidad de marca definida en Figma (paleta de colores "Dark Mode", tipografías Racing y componentes interactivos).
 
-La aplicación consta de las siguientes vistas independientes:
-* **Login y Registro:** Formularios funcionales con validación básica.
-* **Dashboard:** Vista principal con resumen de contenidos.
-* **Noticias:** Listado de noticias y vista de detalle de una noticia.
-* **Foro:** Listado de hilos de discusión y vista de detalle de un post.
-* **Wallpapers:** Galería de imágenes con funcionalidad simulada de compartir.
-* **Perfil:** Visualización de datos de usuario simulados.
+La aplicación cuenta ahora con un diseño totalmente estilizado que incluye:
+* **Landing Page:** Portada inmersiva con acceso para invitados o usuarios registrados.
+* **Home (Inicio):** Panel principal con rejilla responsiva de noticias y widgets laterales.
+* **Navegación Inteligente:** Menú que se oculta automáticamente en pantallas de acceso.
+* **Comunidad:** Secciones completas de Foro, Noticias y Perfil de usuario.
+
+## Tecnologías de Estilos Utilizadas
+
+Siguiendo los requisitos de la entrega, se ha priorizado el uso de Frameworks modernos:
+
+* **Tailwind CSS (v3):** Herramienta principal de estilado. Se ha configurado el archivo `tailwind.config.js` para extender el tema con los colores corporativos:
+    * `racing-red` (#E10600)
+    * `racing-gray` (#2E2E2E)
+* **Fuentes Personalizadas:** Integración de `Montserrat` (texto principal) y `Russo One` (títulos/logo) vía `next/font/google`.
+* **CSS Grid & Flexbox:** Implementados a través de las clases de utilidad de Tailwind para la maquetación responsiva.
 
 ## Requisitos Previos
 
 Para ejecutar este proyecto necesitas tener instalado en tu ordenador:
 
-* **Node.js** (Versión 18 o superior recomendada).
-* **NPM** (Viene instalado junto con Node.js).
-* Un editor de código como **Visual Studio Code**.
+* **Node.js** (Versión 18 o superior).
+* **NPM** (Gestor de paquetes).
+* **Visual Studio Code** (Recomendado).
 
 ## Instalación y Despliegue
 
 Sigue estos pasos para visualizar el proyecto en tu equipo local:
 
-1.  **Clonar el repositorio** (o descargar el ZIP y descomprimirlo):
+1.  **Clonar el repositorio:**
     ```bash
-    git clone https://github.com/TwitchELTOGAED/proyecto-antonio.git
+    git clone [https://github.com/TwitchELTOGAED/proyecto-antonio.git](https://github.com/TwitchELTOGAED/proyecto-antonio.git)
     ```
 
 2.  **Instalar dependencias:**
@@ -37,30 +44,40 @@ Sigue estos pasos para visualizar el proyecto en tu equipo local:
     ```bash
     npm install
     ```
-    *(Esto descargará la carpeta `node_modules` necesaria para que React funcione).*
 
 3.  **Ejecutar el servidor de desarrollo:**
-    Una vez instaladas las dependencias, lanza el proyecto con:
     ```bash
     npm run dev
     ```
 
 4.  **Ver en el navegador:**
     Abre tu navegador web y entra en la siguiente dirección:
-    ```
+    ```text
     http://localhost:3000
     ```
 
-## Estructura del Proyecto
+## Estructura del Proyecto y Componentes
 
-La navegación entre las distintas páginas se realiza de forma manual o a través del índice principal, ya que se han desarrollado como páginas independientes según los requisitos.
+Se ha mantenido una arquitectura limpia separando lógica y presentación:
 
-* **`src/components`**: Contiene los componentes reutilizables (`Header`, `Card`).
-* **`src/app`**: Contiene las páginas del proyecto organizadas por carpetas (`login`, `dashboard`, `noticias`, etc.).
-* **`src/datos.js`**: Archivo con los arrays de datos simulados.
+* **`src/app`**: Rutas de la aplicación (App Router):
+    * `/landing`: Portada de bienvenida (Ruta raíz redirigida).
+    * `/home`: Pantalla principal con el resumen de actualidad.
+    * `/login` y `/signup`: Formularios de acceso y registro.
+    * `/noticias` y `/noticia-detalle`: Listado y vista completa de artículos.
+    * `/foro` y `/foro-detalle`: Listado de temas y conversación.
+    * `/wallpapers`: Galería de imágenes.
+    * `/perfil`: Vista de usuario.
+* **`src/components`**: Componentes visuales reutilizables:
+    * `Header.js`: Barra de navegación fija (*sticky*) con lógica de renderizado condicional.
+    * `NewsCard.js`: Tarjeta de noticias con efectos de interacción.
+    * `ForumRow.js`: Fila de debate estilizada para los listados.
+    * `SectionTitle.js`: Títulos estandarizados con decoración corporativa.
+* **`tailwind.config.js`**: Archivo de configuración con los tokens de diseño (colores y fuentes).
 
-##  Autor
+## Autor
 
 * **Alumno:** Antonio Jurado Ferreira
 * **Asignatura:** Desarrollo de Interfaces
 * **Curso:** 2025/2026
+* **Centro:** IES Laguna de Tollón

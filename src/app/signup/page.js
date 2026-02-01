@@ -1,90 +1,74 @@
-'use client'; // OBLIGATORIO porque usamos useState
-import { useState } from 'react';
-import Link from 'next/link'; // Para poder volver al login si ya tienes cuenta
+import Link from 'next/link';
 
 export default function SignupPage() {
-  
-  // Definimos los estados para el registro
-  const [nombre, setNombre] = useState("");
-  const [usuario, setUsuario] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmar, setConfirmar] = useState("");
-
-  const handleRegistro = (e) => {
-    e.preventDefault();
-
-    if (!nombre || !usuario || !email || !password) {
-      alert("Por favor, rellena todos los campos.");
-      return;
-    }
-
-    
-    if (password !== confirmar) {
-      alert("Las contraseñas no coinciden.");
-      return;
-    }
-
-    
-    alert("¡Usuario " + usuario + " registrado con éxito!");
-    
-  };
-
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>CREAR CUENTA - DELTA TIME</h1>
-      <hr />
+    <div className="min-h-screen relative flex items-center justify-center overflow-hidden py-10">
+      
+      {/* Fondo (Mismo estilo para consistencia) */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src="/Ferrari_Leclerc2026.jpeg" 
+          alt="F1 Fondo" 
+          className="w-full h-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-black/70"></div>
+      </div>
 
-      <form onSubmit={handleRegistro}>
+      {/* TARJETA ROJA (Más alta para que quepan los campos) */}
+      <div className="relative z-10 w-full max-w-md bg-[#E10600] rounded-3xl p-8 shadow-[0_0_50px_rgba(225,6,0,0.5)] mx-4">
         
-        <label>Nombre Completo: </label>
-        <input 
-            type="text" 
-            value={nombre} 
-            onChange={e => setNombre(e.target.value)}
-        />
-        <br/><br/>
+        <Link href="/" className="absolute top-6 left-6 text-white hover:scale-110 transition-transform">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+          </svg>
+        </Link>
 
-        <label>Nombre de Usuario (Nick): </label>
-        <input 
-            type="text" 
-            value={usuario} 
-            onChange={e => setUsuario(e.target.value)}
-        />
-        <br/><br/>
+        <div className="text-center mb-8 mt-2">
+          <h1 className="font-montserrat font-black text-3xl text-white uppercase leading-none tracking-tighter">
+            DELTA TIME
+          </h1>
+          <p className="text-white/80 text-xs font-bold uppercase tracking-widest mt-1">Crear Cuenta</p>
+        </div>
 
-        <label>Correo Electrónico: </label>
-        <input 
-            type="email" 
-            value={email} 
-            onChange={e => setEmail(e.target.value)}
-        />
-        <br/><br/>
+        <form className="space-y-4">
+          <div>
+            <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Correo Electrónico</label>
+            <input type="email" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
+          </div>
 
-        <label>Contraseña: </label>
-        <input 
-            type="password" 
-            value={password} 
-            onChange={e => setPassword(e.target.value)}
-        />
-        <br/><br/>
+          <div>
+            <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Nombre de Usuario</label>
+            <input type="text" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
+          </div>
 
-        <label>Repetir Contraseña: </label>
-        <input 
-            type="password" 
-            value={confirmar} 
-            onChange={e => setConfirmar(e.target.value)}
-        />
-        <br/><br/>
+          {/* Campo Edad (Pequeño según el PDF) */}
+          <div className="w-1/3">
+            <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Edad</label>
+            <input type="number" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
+          </div>
 
-        <button type="submit">REGISTRARSE</button>
-      </form>
+          <div>
+            <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Contraseña</label>
+            <input type="password" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
+          </div>
 
-      <br />
-      <p>¿Ya tienes cuenta?</p>
-      {/* Enlace para ir al Login sin recargar la página */}
-      <Link href="/login">Ir a Iniciar Sesión</Link>
+          <div>
+            <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Confirmar Contraseña</label>
+            <input type="password" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
+          </div>
 
+          <div className="pt-4 flex flex-col gap-3">
+            <button className="w-full bg-white text-[#E10600] font-black py-3 rounded-full uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-lg">
+              Registrarse
+            </button>
+             {/* Botón secundario para volver a login */}
+             <Link href="/login" className="w-full bg-black/20 text-white font-bold py-3 rounded-full uppercase tracking-wider text-center hover:bg-black/40 transition-colors border-2 border-transparent hover:border-white/20">
+              Ya tengo cuenta
+            </Link>
+          </div>
+        </form>
+
+      </div>
     </div>
   );
 }

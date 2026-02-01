@@ -2,23 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Paleta exacta del PDF Pág. 10 */
-  --bg-color: #2E2E2E;
-  --text-color: #F5F5F5;
-  --card-bg: #000000; /* Negro puro o muy oscuro para las tarjetas */
-  --accent-red: #E10600;
-}
-
-body {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  margin: 0;
-  padding: 0;
-}
-
-/* Reset de enlaces para evitar el azul/morado */
-a {
-  color: inherit;
-  text-decoration: none;
-}

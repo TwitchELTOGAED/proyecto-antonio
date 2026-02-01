@@ -1,112 +1,42 @@
 import Link from 'next/link';
-import Header from './components/Header';
-import styles from './page.module.css'; // Importamos los estilos CSS
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="min-h-screen">
-      <Header />
+    <div className="h-screen w-full relative flex flex-col items-center justify-center bg-black overflow-hidden">
+      
+      {/* Fondo */}
+      <div className="absolute inset-0 z-0">
+         <img 
+            src="/Ferrari_Hamilton2026.jpeg"
+            className="w-full h-full object-cover opacity-25" 
+            alt="Fondo F1"
+         />
+         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black"></div>
+      </div>
 
-      <main className={styles.mainContainer}>
-        
-        {/* Usamos la clase CSS Grid definida para la estructura exacta */}
-        <div className={styles.bentoGrid}>
-
-          {/* === SECCIÓN NOTICIAS (Izquierda, Grande) === */}
-          <section className={`${styles.card} ${styles.newsSection}`}>
-            <Link href="/noticias" className="absolute inset-0 z-0"></Link>
-            
-            {/* Título */}
-            <div className="relative z-10">
-              <h2 className="font-contrail text-2xl uppercase tracking-wider">Últimas Noticias</h2>
-              <div className={styles.redLine}></div>
-            </div>
-
-            {/* Lista de Noticias (Estilo PDF Pág 23) */}
-            <div className="flex flex-col gap-6 mt-4 relative z-10 pointer-events-none">
-              
-              {/* Noticia 1 */}
-              <article className="flex gap-4 items-center group">
-                {/* Placeholder de imagen */}
-                <div className="w-32 h-20 bg-gray-800 rounded-lg overflow-hidden shrink-0 border border-gray-700">
-                  {/* Aquí iría la imagen <img src="..." /> */}
-                </div>
-                <div>
-                  <h3 className="font-montserrat font-bold text-lg leading-tight group-hover:text-[#E10600] transition-colors">
-                    VERSTAPPEN A POR LA REMONTADA
-                  </h3>
-                  <p className="font-montserrat text-xs text-gray-400 mt-2">
-                    Max sigue recortando distancia a los McLaren y ya está a 40 puntos...
-                  </p>
-                </div>
-              </article>
-
-              {/* Noticia 2 */}
-              <article className="flex gap-4 items-center group">
-                <div className="w-32 h-20 bg-gray-800 rounded-lg overflow-hidden shrink-0 border border-gray-700"></div>
-                <div>
-                  <h3 className="font-montserrat font-bold text-lg leading-tight group-hover:text-[#E10600] transition-colors">
-                    UN PUNTO QUE SABE A GLORIA
-                  </h3>
-                  <p className="font-montserrat text-xs text-gray-400 mt-2">
-                    Alonso: "Con el noveno coche, he sumado un punto, estoy contento".
-                  </p>
-                </div>
-              </article>
-
-              {/* Noticia 3 */}
-              <article className="flex gap-4 items-center group">
-                <div className="w-32 h-20 bg-gray-800 rounded-lg overflow-hidden shrink-0 border border-gray-700"></div>
-                <div>
-                  <h3 className="font-montserrat font-bold text-lg leading-tight group-hover:text-[#E10600] transition-colors">
-                    NEWEY ES "EL MOTOR" DE ASTON MARTIN
-                  </h3>
-                  <p className="font-montserrat text-xs text-gray-400 mt-2">
-                    Adrian Newey es una de las piedras angulares del proyecto a largo plazo...
-                  </p>
-                </div>
-              </article>
-
-            </div>
-          </section>
-
-          {/* === SECCIÓN FORO (Arriba Derecha) === */}
-          <section className={`${styles.card} ${styles.forumSection}`}>
-            <Link href="/foro" className="absolute inset-0 z-0"></Link>
-            
-            <div className="relative z-10">
-              <h2 className="font-contrail text-xl uppercase tracking-wider">Foro</h2>
-              <div className={styles.redLine}></div>
-            </div>
-
-            <div className="flex flex-col gap-4 relative z-10">
-              <div className="bg-[#1a1a1a] p-3 rounded-lg border-l-4 border-[#E10600]">
-                <p className="font-montserrat font-bold text-sm">¿Es Aston Martin candidato al título en 2026?</p>
-              </div>
-              <div className="bg-[#1a1a1a] p-3 rounded-lg border-l-4 border-gray-600">
-                <p className="font-montserrat font-bold text-sm">El GP de Madrid no me gusta...</p>
-              </div>
-            </div>
-          </section>
-
-          {/* === SECCIÓN WALLPAPERS (Abajo Derecha) === */}
-          <section className={`${styles.card} ${styles.wallpapersSection}`}>
-            <Link href="/wallpapers" className="absolute inset-0 z-0"></Link>
-            
-            <div className="relative z-10">
-              <h2 className="font-contrail text-xl uppercase tracking-wider">Wallpapers</h2>
-              <div className={styles.redLine}></div>
-            </div>
-
-            {/* Grid pequeño de imágenes (Placeholder) */}
-            <div className="grid grid-cols-2 gap-3 mt-2 relative z-10">
-              <div className="h-24 bg-gray-800 rounded-lg border border-gray-700 hover:border-[#E10600] transition-colors"></div>
-              <div className="h-24 bg-gray-800 rounded-lg border border-gray-700 hover:border-[#E10600] transition-colors"></div>
-            </div>
-          </section>
-
+      <div className="z-10 text-center flex flex-col items-center gap-8">
+        <div>
+            <h1 className="font-montserrat font-black text-7xl md:text-9xl text-white tracking-tighter leading-none">
+              DELTA<br/>TIME
+            </h1>
+            <div className="w-full h-2 bg-[#E10600] mt-4 rounded-full"></div>
+            <p className="text-gray-300 tracking-[0.5em] mt-2 font-bold text-xl">F1 FORO</p>
         </div>
-      </main>
+
+        <div className="flex flex-col md:flex-row gap-6 mt-8">
+            <Link href="/home"> {/* TRUCO: Este botón te lleva directo a la app para probar */}
+                <button className="bg-[#E10600] text-white px-12 py-4 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_#E10600]">
+                    Entrar como Invitado
+                </button>
+            </Link>
+            
+            <Link href="/login">
+                <button className="bg-[#2E2E2E] text-white px-12 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-gray-700 transition-colors border border-gray-600">
+                    Iniciar Sesión
+                </button>
+            </Link>
+        </div>
+      </div>
     </div>
   );
 }
