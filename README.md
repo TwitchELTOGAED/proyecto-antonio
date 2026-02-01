@@ -1,6 +1,6 @@
 # DELTA TIME - Proyecto F1 (Entrega 3: Desarrollo Fase 2)
 
-Este repositorio contiene la evolución del proyecto "Delta Time" para la asignatura de Desarrollo de Interfaces. En esta **Fase 2**, el foco principal ha sido la implementación fiel del diseño visual (Pixel Perfect) utilizando **Next.js** y **Tailwind CSS**, transformando el prototipo funcional anterior en una aplicación con una interfaz profesional y responsiva.
+Este repositorio contiene la evolución del proyecto "Delta Time" para la asignatura de Desarrollo de Interfaces. En esta **Fase 2**, el foco principal ha sido la implementación fiel del diseño visual utilizando **Next.js** y **Tailwind CSS**, transformando el prototipo funcional anterior en una aplicación con una interfaz profesional y responsive.
 
 ## Descripción del Proyecto
 
@@ -19,8 +19,8 @@ Siguiendo los requisitos de la entrega, se ha priorizado el uso de Frameworks mo
 * **Tailwind CSS (v3):** Herramienta principal de estilado. Se ha configurado el archivo `tailwind.config.js` para extender el tema con los colores corporativos:
     * `racing-red` (#E10600)
     * `racing-gray` (#2E2E2E)
-* **Fuentes Personalizadas:** Integración de `Montserrat` (texto principal) y `Russo One` (títulos/logo) vía `next/font/google`.
-* **CSS Grid & Flexbox:** Implementados a través de las clases de utilidad de Tailwind para la maquetación responsiva.
+* **Fuentes Personalizadas:** Integración de `Montserrat` (textos) vía `next/font/google`.
+* **CSS Grid & Flexbox:** Implementados a través de las clases de utilidad de Tailwind para la maquetación responsive.
 
 ## Requisitos Previos
 
