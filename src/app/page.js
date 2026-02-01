@@ -4,7 +4,7 @@ export default function LandingPage() {
   return (
     <div className="h-screen w-full relative flex flex-col items-center justify-center bg-black overflow-hidden">
       
-      {/* Fondo */}
+      
       <div className="absolute inset-0 z-0">
          <img 
             src="/Ferrari_Hamilton2026.jpeg"
@@ -24,7 +24,7 @@ export default function LandingPage() {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 mt-8">
-            <Link href="/home"> {/* TRUCO: Este botón te lleva directo a la app para probar */}
+            <Link href="/home">
                 <button className="bg-[#E10600] text-white px-12 py-4 rounded-full font-bold uppercase tracking-widest hover:scale-105 transition-transform shadow-[0_0_20px_#E10600]">
                     Entrar como Invitado
                 </button>

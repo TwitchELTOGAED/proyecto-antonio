@@ -1,6 +1,6 @@
 import SectionTitle from '../components/SectionTitle';
 
-// Componente simple interno para las fotos
+
 const WallpaperItem = ({ src, title, photographer }) => (
   <div className="group relative aspect-[3/4] overflow-hidden rounded-xl bg-[#2E2E2E] cursor-pointer">
     <img 
@@ -8,7 +8,7 @@ const WallpaperItem = ({ src, title, photographer }) => (
         alt={title} 
         className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
     />
-    {/* Overlay al pasar el ratón */}
+   
     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
         <h4 className="font-bold text-white text-lg leading-none">{title}</h4>
         <p className="text-[#E10600] text-xs uppercase font-bold mt-1">📸 {photographer}</p>

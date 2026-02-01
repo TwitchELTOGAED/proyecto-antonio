@@ -4,7 +4,7 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen relative flex items-center justify-center overflow-hidden py-10">
       
-      {/* Fondo (Mismo estilo para consistencia) */}
+      
       <div className="absolute inset-0 z-0">
         <img 
           src="/Ferrari_Leclerc2026.jpeg" 
@@ -14,7 +14,7 @@ export default function SignupPage() {
         <div className="absolute inset-0 bg-black/70"></div>
       </div>
 
-      {/* TARJETA ROJA (Más alta para que quepan los campos) */}
+      
       <div className="relative z-10 w-full max-w-md bg-[#E10600] rounded-3xl p-8 shadow-[0_0_50px_rgba(225,6,0,0.5)] mx-4">
         
         <Link href="/" className="absolute top-6 left-6 text-white hover:scale-110 transition-transform">
@@ -41,7 +41,7 @@ export default function SignupPage() {
             <input type="text" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
           </div>
 
-          {/* Campo Edad (Pequeño según el PDF) */}
+          
           <div className="w-1/3">
             <label className="block text-white font-bold text-xs mb-1 ml-2 uppercase">Edad</label>
             <input type="number" className="w-full bg-white rounded-full py-2 px-4 text-black font-bold focus:outline-none" />
@@ -61,7 +61,7 @@ export default function SignupPage() {
             <button className="w-full bg-white text-[#E10600] font-black py-3 rounded-full uppercase tracking-wider hover:bg-gray-100 transition-colors shadow-lg">
               Registrarse
             </button>
-             {/* Botón secundario para volver a login */}
+             
              <Link href="/login" className="w-full bg-black/20 text-white font-bold py-3 rounded-full uppercase tracking-wider text-center hover:bg-black/40 transition-colors border-2 border-transparent hover:border-white/20">
               Ya tengo cuenta
             </Link>

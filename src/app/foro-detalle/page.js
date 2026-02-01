@@ -6,24 +6,24 @@ export default function ForoDetallePage() {
     <main className="min-h-screen bg-black text-[#F5F5F5] pb-20 pt-8">
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         
-        {/* Botón Volver */}
+       
         <Link href="/foro" className="inline-flex items-center text-gray-400 hover:text-white mb-6 text-sm transition-colors">
           ← Volver al Foro
         </Link>
 
-        {/* Título de la Sección */}
+        
         <SectionTitle title="Foro" />
 
-        {/* --- TARJETA PRINCIPAL DEL TEMA --- */}
+        
         <article className="bg-[#2E2E2E] rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
           
-          {/* Cabecera del Post */}
+          
           <div className="p-8 pb-4">
              <div className="flex justify-between items-start mb-4">
                 <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                   ¿Es Aston Martin candidato al título en 2026?
                 </h1>
-                {/* Icono de Corazón (Favorito) */}
+               
                 <button className="text-gray-400 hover:text-[#E10600] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
@@ -31,7 +31,7 @@ export default function ForoDetallePage() {
                 </button>
              </div>
              
-             {/* Datos del Autor */}
+             
              <div className="flex items-center gap-3 mb-6">
                 <div className="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center font-bold text-xs">U33</div>
                 <div>
@@ -41,7 +41,7 @@ export default function ForoDetallePage() {
              </div>
           </div>
 
-          {/* Imagen del Post (Diseño PDF pág 37) */}
+          
           <div className="w-full aspect-video md:aspect-[21/9] bg-gray-800 relative">
              <img 
                src="/alonso-newey-soymotor.jpeg" 
@@ -50,7 +50,7 @@ export default function ForoDetallePage() {
              />
           </div>
 
-          {/* Cuerpo del Texto */}
+          
           <div className="p-8 space-y-6 text-gray-300 leading-relaxed text-lg">
              <p>
                En 2026 entra en vigor el nuevo reglamento, y con <strong className="text-white">Newey como 'motor' del equipo</strong>, creo que Aston Martin debe de, al menos, pelear por victorias y podios el año que viene...
@@ -63,7 +63,7 @@ export default function ForoDetallePage() {
              </p>
           </div>
 
-          {/* Pie del Post (Botones) */}
+         
           <div className="px-8 pb-8 pt-4 border-t border-white/5 flex gap-4">
              <button className="bg-[#E10600] hover:bg-red-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform hover:scale-105 uppercase text-sm tracking-wider">
                Responder
@@ -75,12 +75,12 @@ export default function ForoDetallePage() {
 
         </article>
 
-        {/* Sección de Respuestas (Simulada) */}
+       
         <div className="mt-12">
            <h3 className="text-xl font-bold mb-6 text-white border-b border-gray-800 pb-2">Comentarios (2)</h3>
            
            <div className="space-y-6">
-              {/* Comentario 1 */}
+              
               <div className="bg-[#1A1A1A] p-6 rounded-xl flex gap-4">
                  <div className="w-10 h-10 rounded-full bg-green-700 flex-shrink-0 flex items-center justify-center font-bold text-xs">F1</div>
                  <div>
@@ -89,7 +89,7 @@ export default function ForoDetallePage() {
                  </div>
               </div>
 
-              {/* Comentario 2 */}
+              
               <div className="bg-[#1A1A1A] p-6 rounded-xl flex gap-4">
                  <div className="w-10 h-10 rounded-full bg-purple-700 flex-shrink-0 flex items-center justify-center font-bold text-xs">MV</div>
                  <div>

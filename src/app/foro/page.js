@@ -6,7 +6,7 @@ export default function ForoPage() {
     <main className="min-h-screen bg-black text-[#F5F5F5] pb-20 pt-8">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         
-        {/* Título de la página */}
+        
         <div className="flex justify-between items-end mb-8">
             <SectionTitle title="Foro de la Comunidad" />
             <button className="bg-[#E10600] hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors uppercase">
@@ -16,7 +16,7 @@ export default function ForoPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
-          {/* LISTA DE TEMAS (8 columnas) */}
+         
           <div className="lg:col-span-8">
             
             <ForumRow 
@@ -53,7 +53,7 @@ export default function ForoPage() {
 
           </div>
 
-          {/* SIDEBAR (Igual que en Home, para consistencia) */}
+          
           <aside className="lg:col-span-4 space-y-8">
              <div className="bg-[#2E2E2E] p-6 rounded-2xl border border-white/5 sticky top-8">
                 <h3 className="text-xl font-bold mb-4 text-white">Reglas del Foro</h3>

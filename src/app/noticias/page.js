@@ -5,16 +5,16 @@ export default function NoticiasPage() {
   return (
     <main className="min-h-screen bg-black text-[#F5F5F5] pb-20 pt-8">
       
-      {/* Contenedor centrado */}
+      
       <div className="max-w-[1000px] mx-auto px-6 md:px-12">
         
-        {/* Título de la Sección */}
+        
         <SectionTitle title="Todas las Noticias" />
         
-        {/* Lista de Noticias Actualizada */}
+        
         <div className="flex flex-col gap-6">
           
-          {/* Noticia 1 */}
+          
           <NewsCard 
             title='En Aston Martin ven el AMR26 "a otro nivel" '
             excerpt="Neil Zambardi-Christie, líder de fabricación, recuerda que es su primer coche con Adrian Newey."
@@ -22,7 +22,7 @@ export default function NoticiasPage() {
             image="/fernando-alonso-aston-martin.webp"
           />
           
-          {/* Noticia 2 */}
+          
           <NewsCard 
             title='Fernando Alonso, al bajarse del AMR26 por primera vez: "Es emocionante" '
             excerpt='Fernando Alonso ya sabe lo que es conducir el Aston Martin AMR26. El asturiano se ha subido por primera al monoplaza diseñado por Adrian Newey.'
@@ -30,7 +30,7 @@ export default function NoticiasPage() {
             image="/fernando-alonso-newey.webp"
           />
 
-          {/* Noticia 3 */}
+         
           <NewsCard 
             title="Así fue el shakedown de la F1 en Barcelona para la parrilla de 2026"
             excerpt="La complejidad de la revisión reglamentaria de la F1 para 2026 es tal que los equipos solicitaron un shakedown adicional, para preparar el inicio de la temporada."
