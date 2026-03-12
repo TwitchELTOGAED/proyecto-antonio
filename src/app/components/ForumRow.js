@@ -1,43 +1,51 @@
 import Link from 'next/link';
 
-export default function ForumRow({ title, author, time, responses, category }) {
+export default function ForumRow({ id, titulo, autor, fecha, respuestas, categoria, onDelete, onEdit }) {
   return (
-    <Link href="/foro-detalle" className="block group">
-      <div className="bg-[#2E2E2E] p-5 rounded-xl border border-transparent hover:border-[#E10600] transition-all mb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        
-       
-        <div className="flex items-center gap-4">
+    <div className="bg-[#2E2E2E] p-4 rounded-xl mb-4 border border-white/5 hover:border-[#E10600] transition-colors flex flex-col md:flex-row gap-4 items-start md:items-center justify-between group">
+      
+      <div className="flex items-center gap-4 flex-grow">
+        <div className="w-12 h-12 rounded-full bg-black border-2 border-[#E10600] flex items-center justify-center flex-shrink-0">
           
-          <div className="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400 font-bold">
-             {author.charAt(0)}
-          </div>
-          <div>
-            <h3 className="text-white font-bold text-lg group-hover:text-[#E10600] transition-colors">
-              {title}
-            </h3>
-            <div className="text-xs text-gray-400 flex gap-2 mt-1">
-               <span className="text-[#E10600] font-bold uppercase">{category}</span>
-               <span>•</span>
-               <span>Por {author}</span>
-               <span>•</span>
-               <span>{time}</span>
-            </div>
-          </div>
+          <span className="text-white font-bold">{autor ? autor.charAt(0).toUpperCase() : "U"}</span>
         </div>
-
         
-        <div className="flex items-center gap-6 text-sm text-gray-400">
-           <div className="text-center">
-              <span className="block font-bold text-white text-lg">{responses}</span>
-              <span className="text-xs">Respuestas</span>
-           </div>
-           
-           <div className="text-[#E10600] opacity-0 group-hover:opacity-100 transition-opacity">
-              ➔
-           </div>
+        <div>
+          
+          <span className="text-xs font-bold text-[#E10600] uppercase tracking-wider">{categoria}</span>
+          
+          <Link href={`/foro-detalle`}>
+             
+             <h4 className="text-lg font-bold text-white group-hover:text-[#E10600] transition-colors cursor-pointer">{titulo}</h4>
+          </Link>
+         
+          <p className="text-xs text-gray-400 mt-1">Por <span className="text-white">{autor}</span> • {fecha}</p>
         </div>
-
       </div>
-    </Link>
+
+      <div className="flex items-center gap-4 flex-shrink-0">
+        <div className="text-center mr-4">
+         
+          <span className="block text-xl font-bold text-white">{respuestas}</span>
+          <span className="text-xs text-gray-500 uppercase">Respuestas</span>
+        </div>
+        
+        <button 
+          onClick={onEdit}
+          className="text-gray-500 hover:text-blue-400 transition-colors p-2"
+          title="Editar tema"
+        >
+          ✏️
+        </button>
+        <button 
+          onClick={() => onDelete(id)}
+          className="text-gray-500 hover:text-[#E10600] transition-colors p-2"
+          title="Borrar tema"
+        >
+          🗑️
+        </button>
+      </div>
+
+    </div>
   );
 }
