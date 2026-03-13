@@ -1,79 +1,60 @@
-# DELTA TIME - Proyecto F1 (Entrega 3: Desarrollo Fase 2)
+# DELTA TIME - Proyecto F1 (Entrega 4: Backend y Base de Datos)
 
-Este repositorio contiene la evolución del proyecto "Delta Time" para la asignatura de Desarrollo de Interfaces. En esta **Fase 2**, el foco principal ha sido la implementación fiel del diseño visual utilizando **Next.js** y **Tailwind CSS**, transformando el prototipo funcional anterior en una aplicación con una interfaz profesional y responsive.
+Este repositorio contiene la Fase 2 del proyecto "Delta Time" para la asignatura de Desarrollo de Interfaces. Delta Time es una plataforma y foro diseñado para la comunidad de Fórmula 1.
 
-## Descripción del Proyecto
+En esta entrega, hemos dado el gran salto: pasamos de tener una interfaz visual estática a una aplicación web más completa y funcional (Full-Stack). Hemos implementado una arquitectura Cliente-Servidor conectando la web a una base de datos real en Supabase mediante un backend propio.
 
-Delta Time es una plataforma digital y foro diseñado exclusivamente para la comunidad de Fórmula 1. El objetivo de esta entrega ha sido aplicar una capa de estilos visuales robusta que respete la identidad de marca definida en Figma (paleta de colores "Dark Mode", tipografías Racing y componentes interactivos).
+## Tecnologías Utilizadas
 
-La aplicación cuenta ahora con un diseño totalmente estilizado que incluye:
-* **Landing Page:** Portada inmersiva con acceso para invitados o usuarios registrados.
-* **Home (Inicio):** Panel principal con rejilla responsiva de noticias y widgets laterales.
-* **Navegación Inteligente:** Menú que se oculta automáticamente en pantallas de acceso.
-* **Comunidad:** Secciones completas de Foro, Noticias y Perfil de usuario.
+* **Frontend:** Next.js (App Router) y React.
+* **Estilos:** Tailwind CSS con la paleta de colores corporativa (Dark Mode) y tipografías personalizadas.
+* **Backend:** Next.js API Routes.
+* **Base de Datos:** Supabase (PostgreSQL).
 
-## Tecnologías de Estilos Utilizadas
+## Arquitectura del Proyecto
 
-Siguiendo los requisitos de la entrega, se ha priorizado el uso de Frameworks modernos:
+Para cumplir con los requisito de la entrega, hemos separado el proyecto en tres capas:
+1. **Frontend (src/app y src/components):** Es la cara visual de la web. Captura lo que escribe el usuario, pero nunca se conecta directamente a la base de datos por seguridad.
+2. **Backend (src/app/api):** Es nuestro puente seguro. Son rutas de API que reciben las peticiones del frontend, validan que todo esté bien y se conectan con Supabase.
+3. **Base de Datos:** Nuestro proyecto en Supabase donde se guardan los datos de forma persistente.
 
-* **Tailwind CSS (v3):** Herramienta principal de estilado. Se ha configurado el archivo `tailwind.config.js` para extender el tema con los colores corporativos:
-    * `racing-red` (#E10600)
-    * `racing-gray` (#2E2E2E)
-* **Fuentes Personalizadas:** Integración de `Montserrat` (textos) vía `next/font/google`.
-* **CSS Grid & Flexbox:** Implementados a través de las clases de utilidad de Tailwind para la maquetación responsive.
+## El CRUD del Foro (Endpoints)
 
-## Requisitos Previos
+He desarrollado un CRUD completo (Crear, Leer, Actualizar y Borrar) para que el foro funcione de verdad. Todo se controla desde el archivo `/api/foro/route.js`:
+* **GET /api/foro**: Lee y devuelve todos los temas guardados, ordenados del más nuevo al más antiguo.
+* **POST /api/foro**: Recibe los datos del formulario (título, autor, categoría y contenido), comprueba que no falte nada y crea el tema en la base de datos.
+* **PUT /api/foro**: Recibe los datos de un tema que ya existe y lo actualiza (Editar).
+* **DELETE /api/foro?id=X**: Busca un tema por su ID y lo elimina de la base de datos.
 
-Para ejecutar este proyecto necesitas tener instalado en tu ordenador:
+## Estructura de la Base de Datos
 
-* **Node.js** (Versión 18 o superior).
-* **NPM** (Gestor de paquetes).
-* **Visual Studio Code** (Recomendado).
+He creado una tabla en Supabase llamada `foro_temas` con estas columnas:
+* `id` (Clave primaria autogenerada, tipo UUID)
+* `created_at` (Fecha de creación)
+* `titulo` (Texto)
+* `autor` (Texto)
+* `categoria` (Texto)
+* `contenido` (Texto)
 
-## Instalación y Despliegue
+## Instalación y Ejecución
 
-Sigue estos pasos para visualizar el proyecto en tu equipo local:
+Si quieres probar el proyecto en tu ordenador, sigue estos pasos:
 
-1.  **Clonar el repositorio:**
-    ```bash
-    git clone [https://github.com/TwitchELTOGAED/proyecto-antonio.git](https://github.com/TwitchELTOGAED/proyecto-antonio.git)
-    ```
+1. **Clona el repositorio:**
+   git clone https://github.com/TwitchELTOGAED/proyecto-antonio.git
 
-2.  **Instalar dependencias:**
-    Abre una terminal en la carpeta raíz del proyecto y ejecuta:
-    ```bash
-    npm install
-    ```
+2. **Instala las dependencias:**
+   Abre una terminal en la carpeta del proyecto y ejecuta:
+   npm install
 
-3.  **Ejecutar el servidor de desarrollo:**
-    ```bash
-    npm run dev
-    ```
+3. **Configura las Variables de Entorno:**
+   Crea un archivo llamado exactamente `.env.local` en la carpeta principal del proyecto (al mismo nivel que `package.json`) y pega tus claves de Supabase:
+   NEXT_PUBLIC_SUPABASE_URL=tu_url_del_proyecto
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_publica
 
-4.  **Ver en el navegador:**
-    Abre tu navegador web y entra en la siguiente dirección:
-    ```text
-    http://localhost:3000
-    ```
-
-## Estructura del Proyecto y Componentes
-
-Se ha mantenido una arquitectura limpia separando lógica y presentación:
-
-* **`src/app`**: Rutas de la aplicación (App Router):
-    * `/landing`: Portada de bienvenida (Ruta raíz redirigida).
-    * `/home`: Pantalla principal con el resumen de actualidad.
-    * `/login` y `/signup`: Formularios de acceso y registro.
-    * `/noticias` y `/noticia-detalle`: Listado y vista completa de artículos.
-    * `/foro` y `/foro-detalle`: Listado de temas y conversación.
-    * `/wallpapers`: Galería de imágenes.
-    * `/perfil`: Vista de usuario.
-* **`src/components`**: Componentes visuales reutilizables:
-    * `Header.js`: Barra de navegación fija (*sticky*) con lógica de renderizado condicional.
-    * `NewsCard.js`: Tarjeta de noticias con efectos de interacción.
-    * `ForumRow.js`: Fila de debate estilizada para los listados.
-    * `SectionTitle.js`: Títulos estandarizados con decoración corporativa.
-* **`tailwind.config.js`**: Archivo de configuración con los tokens de diseño (colores y fuentes).
+4. **Arranca el servidor:**
+   npm run dev
+   Abre tu navegador y entra en http://localhost:3000
 
 ## Autor
 
