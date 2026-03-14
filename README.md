@@ -15,7 +15,7 @@ En esta entrega, hemos dado el gran salto: pasamos de tener una interfaz visual 
 
 Para cumplir con los requisito de la entrega, hemos separado el proyecto en tres capas:
 1. **Frontend (src/app y src/components):** Es la cara visual de la web. Captura lo que escribe el usuario, pero nunca se conecta directamente a la base de datos por seguridad.
-2. **Backend (src/app/api):** Es nuestro puente seguro. Son rutas de API que reciben las peticiones del frontend, validan que todo esté bien y se conectan con Supabase.
+2. **Backend (src/app/api):** Es nuestro "puente" seguro. Son rutas de API que reciben las peticiones del frontend, validan que todo esté bien y se conectan con Supabase.
 3. **Base de Datos:** Nuestro proyecto en Supabase donde se guardan los datos de forma persistente.
 
 ## El CRUD del Foro (Endpoints)
@@ -48,10 +48,10 @@ Si quieres probar el proyecto en tu ordenador, sigue estos pasos:
    npm install
 
 3. **Configura las Variables de Entorno:**
-   Crea un archivo llamado exactamente `.env.local` en la carpeta principal del proyecto (al mismo nivel que `package.json`) y pega tus claves de Supabase:
-   NEXT_PUBLIC_SUPABASE_URL=tu_url_del_proyecto
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_clave_publica
-
+   Crea un archivo llamado exactamente `.env.local` en la carpeta principal del proyecto y pega las claves de Supabase:
+   NEXT_PUBLIC_SUPABASE_URL="..."
+   NEXT_PUBLIC_SUPABASE_ANON_KEY="..."
+""
 4. **Arranca el servidor:**
    npm run dev
    Abre tu navegador y entra en http://localhost:3000
