@@ -2,202 +2,145 @@
 
 import { useState, useEffect } from 'react';
 import SectionTitle from '../components/SectionTitle';
-import ForumRow from '../components/ForumRow';
+import Link from 'next/link';
+import { supabase } from '../lib/supabase'; 
 
 export default function ForoPage() {
   const [temas, setTemas] = useState([]);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
   
-  const [titulo, setTitulo] = useState('');
-  const [categoria, setCategoria] = useState('Noticias');
-  const [contenido, setContenido] = useState('');
   
- 
-  const [temaEditando, setTemaEditando] = useState(null); 
+  const [admin, setAdmin] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+
+  
+  const [titulo, setTitulo] = useState('');
+  const [contenido, setContenido] = useState('');
 
   useEffect(() => {
-    const fetchInicial = async () => {
-      try {
-        const respuesta = await fetch('/api/foro');
-        if (respuesta.ok) {
-          const datos = await respuesta.json();
-          setTemas(datos);
-        }
-      } catch (error) {
-        console.error(error);
+    
+    if (typeof window !== 'undefined') {
+      const role = localStorage.getItem('userRole');
+      if (role === 'admin') setAdmin(true);
+    }
+
+   
+    const obtenerUsuario = async () => {
+      const { data } = await supabase.auth.getUser();
+      if (data?.user) {
+        setUserEmail(data.user.email);
       }
     };
-    fetchInicial();
+    obtenerUsuario();
+
+   
+    fetch('/api/foro')
+      .then((res) => res.json())
+      .then((data) => setTemas(data || []));
   }, []);
-
- 
-  const iniciarEdicion = (tema) => {
-    setTemaEditando(tema.id);
-    setTitulo(tema.titulo);
-    setCategoria(tema.categoria);
-    setContenido(tema.contenido);
-    setMostrarFormulario(true); 
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  };
-
-  
-  const cancelarFormulario = () => {
-    setMostrarFormulario(false);
-    setTemaEditando(null);
-    setTitulo('');
-    setCategoria('Noticias');
-    setContenido('');
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    try {
-      
-      const metodo = temaEditando ? 'PUT' : 'POST';
-      const bodyDatos = temaEditando 
-          ? { id: temaEditando, titulo, categoria, contenido } 
-          : { titulo, categoria, contenido };
-
-      const respuesta = await fetch('/api/foro', {
-        method: metodo,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bodyDatos)
-      });
-
-      if (respuesta.ok) {
-        cancelarFormulario();
-        
-        
-        const res = await fetch('/api/foro');
-        if (res.ok) {
-          const datos = await res.json();
-          setTemas(datos);
-        }
-      } else {
-        alert("Error al guardar el tema.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    
+    await fetch('/api/foro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ 
+        titulo, 
+        contenido,
+        user_email: userEmail || 'Anónimo'
+      })
+    });
+    
+    setTitulo(''); setContenido('');
+    setMostrarFormulario(false);
+    
+    const res = await fetch('/api/foro');
+    const data = await res.json();
+    setTemas(data || []);
   };
 
   const borrarTema = async (id) => {
     if (!window.confirm("¿Seguro que quieres borrar este tema?")) return;
-
-    try {
-      const respuesta = await fetch(`/api/foro?id=${id}`, {
-        method: 'DELETE',
-      });
-
-      if (respuesta.ok) {
-        const res = await fetch('/api/foro');
-        if (res.ok) {
-          const datos = await res.json();
-          setTemas(datos);
-        }
-      } else {
-        alert("Error al borrar el tema.");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    await fetch(`/api/foro?id=${id}`, { method: 'DELETE' });
+    
+    const res = await fetch('/api/foro');
+    const data = await res.json();
+    setTemas(data || []);
   };
 
   return (
     <main className="min-h-screen bg-black text-[#F5F5F5] pb-20 pt-8">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+        
         <div className="flex justify-between items-end mb-8">
-            <SectionTitle title="Foro de la Comunidad" />
+          <SectionTitle title="Foro de la Comunidad" />
+          
+          
+          {userEmail && (
             <button 
-                onClick={() => mostrarFormulario ? cancelarFormulario() : setMostrarFormulario(true)}
-                className="bg-[#E10600] hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors uppercase"
+              onClick={() => setMostrarFormulario(!mostrarFormulario)}
+              className="bg-[#E10600] hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors uppercase"
             >
-                {mostrarFormulario ? "Cancelar" : "+ Nuevo Tema"}
+              {mostrarFormulario ? "Cancelar" : "+ Nuevo Tema"}
             </button>
+          )}
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-8">
-            {mostrarFormulario && (
-              <form onSubmit={handleSubmit} className="bg-[#2E2E2E] p-6 rounded-xl mb-8 border border-[#E10600]/50 shadow-2xl">
-                <h3 className="text-xl font-bold mb-4 text-white">
-                  {temaEditando ? "Editar tema" : "Crear un nuevo tema"}
-                </h3>
-                
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Título del tema</label>
-                    <input 
-                      type="text" 
-                      required
-                      value={titulo}
-                      onChange={(e) => setTitulo(e.target.value)}
-                      className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#E10600]"
-                    />
-                  </div>
+        {mostrarFormulario && userEmail && (
+          <form onSubmit={handleSubmit} className="bg-[#2E2E2E] p-6 rounded-xl mb-8 border border-[#E10600]/50">
+            <h3 className="text-xl font-bold mb-4 text-white">Crear nuevo tema</h3>
+            <div className="space-y-4">
+              <input type="text" required placeholder="Título del debate" value={titulo} onChange={(e) => setTitulo(e.target.value)} className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#E10600]" />
+              <textarea required placeholder="Escribe tu mensaje aquí..." value={contenido} onChange={(e) => setContenido(e.target.value)} className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#E10600] min-h-[150px]" />
+              <button type="submit" className="bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors uppercase text-sm w-full">
+                Publicar Tema
+              </button>
+            </div>
+          </form>
+        )}
+
+        <div className="flex flex-col gap-4">
+          {temas.length === 0 ? (
+            <p className="text-gray-400">No hay temas en el foro todavía.</p>
+          ) : (
+            temas.map((tema) => {
+              
+              const esPropietario = userEmail === tema.user_email;
+              const puedeBorrar = admin || esPropietario;
+
+              return (
+                <div key={tema.id} className="bg-[#2E2E2E] p-6 rounded-xl border border-transparent hover:border-gray-600 transition-colors relative group">
                   
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Categoría</label>
-                    <select 
-                      value={categoria}
-                      onChange={(e) => setCategoria(e.target.value)}
-                      className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#E10600]"
+                 
+                  <Link href={`/foro-detalle?id=${tema.id}`} className="block cursor-pointer">
+                    <span className="text-xs font-bold text-[#E10600] uppercase tracking-wider mb-2 block">
+                      Por: {tema.user_email || 'Anónimo'}
+                    </span>
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#E10600] transition-colors">
+                      {tema.titulo}
+                    </h3>
+                    <p className="text-gray-400 text-sm line-clamp-2">
+                      {tema.contenido}
+                    </p>
+                  </Link>
+
+                 
+                  {puedeBorrar && (
+                    <button 
+                      onClick={() => borrarTema(tema.id)}
+                      className="absolute top-6 right-6 bg-black/80 hover:bg-[#E10600] text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-all z-10"
+                      title="Borrar Tema"
                     >
-                      <option value="Noticias">Noticias</option>
-                      <option value="Opiniones">Opiniones</option>
-                      <option value="Imágenes">Imágenes</option>
-                      <option value="Clips">Clips</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-bold text-gray-400 uppercase mb-1">Contenido</label>
-                    <textarea 
-                      required
-                      value={contenido}
-                      onChange={(e) => setContenido(e.target.value)}
-                      className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:border-[#E10600] h-32"
-                    ></textarea>
-                  </div>
-
-                  <button type="submit" className="bg-white text-black font-bold py-3 px-8 rounded-full hover:bg-gray-200 transition-colors uppercase text-sm w-full">
-                    {temaEditando ? "Actualizar Tema" : "Publicar Tema"}
-                  </button>
+                      🗑️
+                    </button>
+                  )}
                 </div>
-              </form>
-            )}
-
-            {temas.length === 0 ? (
-                <p className="text-gray-400">No hay temas todavía. ¡Sé el primero en publicar!</p>
-            ) : (
-                temas.map((tema) => (
-                  <ForumRow 
-                    key={tema.id}
-                    id={tema.id}
-                    titulo={tema.titulo}
-                    autor={tema.autor}
-                    fecha={new Date(tema.created_at).toLocaleDateString()}
-                    respuestas="0"
-                    categoria={tema.categoria || "General"}
-                    onDelete={borrarTema}
-                    onEdit={() => iniciarEdicion(tema)}
-                  />
-                ))
-            )}
-          </div>
-
-          <aside className="lg:col-span-4 space-y-8">
-             <div className="bg-[#2E2E2E] p-6 rounded-2xl border border-white/5 sticky top-8">
-                <h3 className="text-xl font-bold mb-4 text-white">Reglas del Foro</h3>
-                <ul className="list-disc list-inside text-gray-400 space-y-2 text-sm">
-                   <li>Respeto ante todo.</li>
-                   <li>No spoilers en títulos.</li>
-                   <li>Diviértete debatiendo.</li>
-                </ul>
-             </div>
-          </aside>
+              );
+            })
+          )}
         </div>
+
       </div>
     </main>
   );
