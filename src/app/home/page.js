@@ -5,6 +5,7 @@ import SectionTitle from '../components/SectionTitle';
 import NewsCard from '../components/NewsCard';
 import Link from 'next/link';
 
+
 export default function Home() {
   const [noticias, setNoticias] = useState([]);
 

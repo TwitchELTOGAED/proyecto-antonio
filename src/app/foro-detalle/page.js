@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '../lib/supabase'; 
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-export default function ForoDetallePage() {
+function ForoDetalleContenido() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id'); 
   const [tema, setTema] = useState(null);
@@ -56,5 +57,13 @@ export default function ForoDetallePage() {
         
       </div>
     </main>
+  );
+}
+
+export default function ForoDetalle() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black text-white p-20 text-center">Cargando...</div>}>
+      <ForoDetalleContenido />
+    </Suspense>
   );
 }

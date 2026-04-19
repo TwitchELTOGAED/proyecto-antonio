@@ -4,8 +4,9 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { supabase } from '../lib/supabase'; 
 import Link from 'next/link';
+import { Suspense } from 'react';
 
-export default function NoticiaDetallePage() {
+function NoticiaDetalleContenido() {
   const searchParams = useSearchParams();
   const id = searchParams.get('id'); 
   const [noticia, setNoticia] = useState(null);
@@ -61,5 +62,13 @@ export default function NoticiaDetallePage() {
         
       </div>
     </main>
+  );
+}
+
+export default function ForoDetalle() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black text-white p-20 text-center">Cargando...</div>}>
+      <NoticiaDetalleContenido />
+    </Suspense>
   );
 }
