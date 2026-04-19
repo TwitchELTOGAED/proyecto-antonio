@@ -65,6 +65,21 @@ Si quieres probar el proyecto en tu ordenador, sigue estos pasos:
    npm run dev
    Abre tu navegador y entra en http://localhost:3000
 
+
+   **URL DE LA APLICACIÓN DESPLEGADA:** https://proyecto-antonio.vercel.app
+
+## Instrucciones para ejecutar en local
+1. Clona el repositorio: `git clone https://github.com/TwitchELTOGAED/proyecto-antonio.git`
+2. Instala las dependencias: `npm install`
+3. Crea un archivo `.env.local` en la raíz con las variables `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. Arranca el servidor: `npm run dev`
+
+## Tecnologías Utilizadas
+* **Frontend:** Next.js, React, Tailwind CSS.
+* **Backend:** Next.js API Routes.
+* **Base de Datos y Autenticación:** Supabase (PostgreSQL).
+* **Despliegue:** Vercel.
+
 ## Autor
 
 * **Alumno:** Antonio Jurado Ferreira
