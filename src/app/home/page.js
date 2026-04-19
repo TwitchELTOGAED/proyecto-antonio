@@ -9,7 +9,7 @@ export default function Home() {
   const [noticias, setNoticias] = useState([]);
 
   useEffect(() => {
-   
+    
     fetch('/api/noticias')
       .then(res => res.json())
       .then(data => {
@@ -28,6 +28,7 @@ export default function Home() {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           
+          
           <div className="lg:col-span-8">
             <SectionTitle title="Últimas Noticias" />
             
@@ -36,15 +37,15 @@ export default function Home() {
                 <p className="text-gray-400">Cargando noticias de la pista...</p>
               ) : (
                 noticias.map((noticia) => (
-                  
-                  <Link key={noticia.id} href={`/noticia-detalle?id=${noticia.id}`} className="block hover:scale-[1.01] transition-transform">
+                  <div key={noticia.id} className="block hover:scale-[1.01] transition-transform">
                     <NewsCard 
+                      id={noticia.id} 
                       title={noticia.titulo}
                       excerpt={noticia.contenido.substring(0, 120) + '...'} 
                       category="Actualidad"
                       image={noticia.imagen || "/fernando-alonso-aston-martin.webp"} 
                     />
-                  </Link>
+                  </div>
                 ))
               )}
             </div>
@@ -57,7 +58,6 @@ export default function Home() {
               <SectionTitle title="Foro" />
               <div className="bg-[#2E2E2E] rounded-2xl p-6 border border-white/5">
                 <ul className="space-y-6">
-                  
                   <li className="border-b border-gray-700 pb-4 last:border-0 last:pb-0">
                     <Link href="/foro" className="hover:text-[#E10600] transition-colors">
                       <h4 className="font-bold text-md mb-1">¿Es Aston Martin candidato al título en 2026?</h4>
